@@ -1,0 +1,179 @@
+body {
+	font-family: 'Inter', 'Noto Sans TC', sans-serif;
+	background-color: #0F172A;
+	color: #1E293B;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	overflow: hidden;
+}
+
+.presentation-container {
+	width: 100vw;
+	max-width: 1280px;
+	height: calc(100vw * 9 / 16);
+	max-height: 720px;
+	position: relative;
+	background-color: #F4F7F6;
+	background-image: 
+		radial-gradient(circle at 10% 20%, rgba(0, 137, 123, 0.05) 0%, transparent 40%),
+		radial-gradient(circle at 90% 80%, rgba(217, 119, 6, 0.05) 0%, transparent 40%),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(244, 247, 246, 0.95) 100%);
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+	border-radius: 16px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+/* Marca de agua oriental decorativa fija en la esquina de la presentación */
+.presentation-container::before {
+	content: "學華語";
+	position: absolute;
+	bottom: -20px;
+	right: 20px;
+	font-size: 11rem;
+	font-family: 'Noto Sans TC', sans-serif;
+	font-weight: 700;
+	color: rgba(0, 137, 123, 0.03);
+	pointer-events: none;
+	user-select: none;
+	z-index: 0;
+	line-height: 1;
+}
+
+@media (max-width: 768px) {
+	.presentation-container {
+		height: 100vh;
+		max-height: none;
+		border-radius: 0;
+	}
+}
+
+/* Header Accent Bar */
+.header-bar {
+	background-color: #00897B;
+	height: 8px;
+	width: 100%;
+	z-index: 10;
+}
+
+/* Slide animations */
+.slide {
+	display: none;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	height: 100%;
+	padding: 2rem 3rem;
+	box-sizing: border-box;
+	z-index: 1;
+}
+
+.slide.active {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	opacity: 1;
+}
+
+/* Custom Styles for Language Cards */
+.lang-card {
+	background: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(8px);
+	border-radius: 16px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+	border: 1px solid rgba(226, 232, 240, 0.8);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accent-text {
+	color: #D97706; /* Warm Orange Accent */
+}
+
+.brand-teal {
+	color: #00897B;
+}
+
+.badge-zhuyin {
+	background-color: #E6F4F1;
+	color: #00695C;
+	border: 1px solid #B2DFDB;
+	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 1.15rem !important;
+	padding: 0.4rem 1rem !important;
+}
+
+.badge-pinyin {
+	background-color: #FEF3C7;
+	color: #92400E;
+	border: 1px solid #FDE68A;
+	font-size: 1.1rem !important;
+	padding: 0.4rem 1rem !important;
+}
+
+/* Dialogue Speech Bubbles */
+.chat-bubble {
+	border-radius: 18px;
+	padding: 12px 20px;
+	position: relative;
+	max-width: 85%;
+}
+
+.chat-bubble-a {
+	background-color: #E0F2FE;
+	color: #0369A1;
+	border-bottom-left-radius: 4px;
+}
+
+.chat-bubble-b {
+	background-color: #E6F4F1;
+	color: #00695C;
+	border-bottom-right-radius: 4px;
+}
+
+/* Zhuyin Sound Pills */
+.zhuyin-pill {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.25rem 0.5rem;
+	border-radius: 8px;
+	background-color: #F8FAFC;
+	border: 1px solid #E2E8F0;
+}
+
+/* Pills resaltadas para sonidos usados en Lección 1 */
+.zhuyin-pill.used {
+	background-color: #E6F4F1;
+	border: 1.5px solid #00897B;
+}
+
+.zhuyin-sym {
+	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: #00695C;
+}
+
+.pinyin-sym {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #92400E;
+	background-color: #FEF3C7;
+	padding: 0.1rem 0.35rem;
+	border-radius: 4px;
+}
+
+.glow-btn {
+	transition: all 0.2s ease;
+}
+.glow-btn:hover {
+	filter: brightness(1.1);
+	transform: scale(1.05);
+}
+.glow-btn:active {
+	transform: scale(0.95);
+}

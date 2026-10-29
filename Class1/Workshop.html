@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2: Taller de Práctica Activa - Lección 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-6">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Header del Taller -->
+        <header class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col md:flex-row justify-between items-center shadow-lg gap-4">
+            <div>
+                <span class="bg-amber-500/10 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full border border-amber-500/20">Clase 2 · Gimnasio Lingüístico</span>
+                <h1 class="text-2xl font-bold mt-2 text-white">Lección 1: Palabras Cortesía</h1>
+                <p class="text-slate-400 text-sm mt-1">5 Misiones paso a paso para dominar las 15 palabras de la lección en voz alta.</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="togglePinyin()" id="btnPinyin" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-4 py-2 rounded-xl text-xs font-medium transition border border-slate-600">
+                    Ocultar Pinyin (Modo Desafío)
+                </button>
+            </div>
+        </header>
+
+        <!-- Navegación de Misiones (Pestañas Paso a Paso) -->
+        <nav class="flex overflow-x-auto gap-2 pb-2 border-b border-slate-800">
+            <button onclick="setMission(1)" id="tab-1" class="mission-tab bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition">
+                Misión 1: Saludos
+            </button>
+            <button onclick="setMission(2)" id="tab-2" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 2: Bienestar
+            </button>
+            <button onclick="setMission(3)" id="tab-3" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 3: Agradecer
+            </button>
+            <button onclick="setMission(4)" id="tab-4" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 4: Disculpas
+            </button>
+            <button onclick="setMission(5)" id="tab-5" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 5: Despedida
+            </button>
+        </nav>
+
+        <!-- Contenido Principal Grid (Alineado arriba) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <!-- Columna Izquierda: Banco de Palabras Resumido (15 Palabras) -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-lg flex flex-col h-fit">
+                <h2 class="text-xs font-bold tracking-wider text-amber-400 uppercase mb-3 flex justify-between items-center">
+                    <span>Vocabulario Base</span>
+                    <span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[10px]">15 Términos</span>
+                </h2>
+                <div class="grid grid-cols-2 gap-2 text-xs overflow-y-auto max-h-[480px] pr-1">
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">你好</span> <span class="pinyin-text text-[11px] text-slate-400">Nǐ hǎo</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">您好</span> <span class="pinyin-text text-[11px] text-slate-400">Nín hǎo</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">早安</span> <span class="pinyin-text text-[11px] text-slate-400">Zǎo ān</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">午安</span> <span class="pinyin-text text-[11px] text-slate-400">Wǔ ān</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">晚安</span> <span class="pinyin-text text-[11px] text-slate-400">Wǎn ān</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">你好嗎</span> <span class="pinyin-text text-[11px] text-slate-400">Nǐ hǎo ma</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">我很好</span> <span class="pinyin-text text-[11px] text-slate-400">Wǒ hěn hǎo</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">不好</span> <span class="pinyin-text text-[11px] text-slate-400">Bù hǎo</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">謝謝</span> <span class="pinyin-text text-[11px] text-slate-400">Xiè xie</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">不客氣</span> <span class="pinyin-text text-[11px] text-slate-400">Bú kè qi</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">再見</span> <span class="pinyin-text text-[11px] text-slate-400">Zài jiàn</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">請</span> <span class="pinyin-text text-[11px] text-slate-400">Qǐng</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">對不起</span> <span class="pinyin-text text-[11px] text-slate-400">Duì bu qǐ</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">沒關係</span> <span class="pinyin-text text-[11px] text-slate-400">Méi guān xi</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50 col-span-2"><span class="font-bold text-white block">大家</span> <span class="pinyin-text text-[11px] text-slate-400">Dà jiā</span></div>
+                </div>
+            </div>
+
+            <!-- Columna Central/Derecha: Área de Misiones (Usando Flex en lugar de space-y-6) -->
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                
+                <!-- MISIÓN 1 -->
+                <div id="mission-1" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 1 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">El Saludo Adecuado y Formalidad</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Practica elegir el saludo correcto según el momento del día y el nivel de respeto.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 你好, 您好, 早安, 午安, 晚安, 大家</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">王老師，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[您好 / 你好]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Wáng lǎoshī, [nín hǎo / nǐ hǎo]!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium"><span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[大家 / 你好]</span> <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[早安 / 晚安]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">[Dàjiā / Nǐ hǎo] [zǎo ān / wǎn ān]!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+						<p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+							<button onclick="showCorrection('Cortesía: Nǐ vs Nín', '<b>您好 (Nín hǎo):</b> Es obligatorio usar 您 al dirigirse a un profesor, cliente o persona mayor. Reserva 你好 (Nǐ hǎo) para compañeros o amigos de tu misma edad.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+								<span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Regla de Cortesía: 您好 vs 你好</span>
+								<span class="text-slate-400 text-[11px] mt-0.5 block">¿Cuándo usar el honorífico Nín?</span>
+							</button>
+							<button onclick="showCorrection('Cambio de Tono (3º + 3º)', '<b>你好 (Nǐ hǎo):</b> Cuando dos terceros tonos van juntos (3º + 3º), el primero cambia a 2º tono ascendente para mayor fluidez: <i>Ní hǎo</i>.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+								<span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: Cambio de Tono en 你好</span>
+								<span class="text-slate-400 text-[11px] mt-0.5 block">Regla del 3er tono (Nǐ -> Ní)</span>
+							</button>
+						</div>
+					</div>
+                </div>
+
+                <!-- MISIÓN 2 -->
+                <div id="mission-2" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 2 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Preguntar por el Estado de Ánimo</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Expresa tu estado personal y responde con precisión a la pregunta de cortesía.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 你好嗎, 我很好, 不好</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">李小姐，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[你好嗎 / 您好]</span>？</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Lǐ xiǎojiě, [nǐ hǎo ma / nín hǎo]?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">謝謝，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[我很好 / 不好]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Xiè xie, [wǒ hěn hǎo / bù hǎo]!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Triple 3er Tono', '<b>我很好 (Wǒ hěn hǎo):</b> Al juntarse tres terceros tonos, los dos primeros pasan a segundo tono: <i>Wó hén hǎo</i>.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 我很好</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Cambio de tono en Wǒ hěn hǎo</span>
+                            </button>
+                            <button onclick="showCorrection('Partícula 嗎 (ma)', '<b>嗎 (ma):</b> Es la partícula interrogativa para preguntas de Sí/No. Lleva <b>tono neutro</b>, rápido y suave.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Gramática: Partícula 嗎 (ma)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Pronunciación en tono neutro</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 3 -->
+                <div id="mission-3" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 3 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Agradecimiento y Cortesía Comercial</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Simula una petición educada y la respuesta adecuada al recibir ayuda.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 請, 謝謝, 不客氣</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium"><span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[請 / 謝謝]</span>，這是您的茶。</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">[Qǐng / xiè xie], zhè shì nín de chá.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">謝謝！ — <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[不客氣 / 請]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Xiè xie! — [Bú kè qi / qǐng]!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Tono Neutro en 謝謝', '<b>謝謝 (Xiè xie):</b> La primera sílaba tiene 4º tono descendente firme (Xiè), la segunda es un <b>tono neutro</b> corto y suave (xie).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 謝謝 (Xiè xie)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Aplicación del tono neutro</span>
+                            </button>
+                            <button onclick="showCorrection('Cambio de Tono en 不客氣', '<b>不 (Bù):</b> Cambia de 4º a 2º tono (Bú) cuando precede a otro 4º tono como 客 (kè): <i>Bú kè qi</i>.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 不客氣 (Bú kè qi)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Cambio del tono de 不 (Bù -> Bú)</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 4 -->
+                <div id="mission-4" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 4 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Manejo de Disculpas e Inconvenientes</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Expresa disculpas formales y aprende a restar importancia con gentileza.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 對不起, 沒關係</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">啊，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[對不起 / 不好]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">A, [duì bu qǐ / bù hǎo]!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium"><span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[沒關係 / 不客氣]</span>，沒事！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">[Méi guān xi / bú kè qi], méi shì!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('對不起 vs 沒關係', '<b>Diferencia:</b> <i>對不起 (Duì bu qǐ)</i> se usa para pedir disculpas (Lo siento). <i>沒關係 (Méi guān xi)</i> es la respuesta (No pasa nada / Está bien).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Uso: 對不起 vs 沒關係</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Distinguir pedido de respuesta</span>
+                            </button>
+                            <button onclick="showCorrection('Pronunciación de 不 en 對不起', '<b>對不起 (Duì bu qǐ):</b> La partícula 不 en medio de la estructura se pronuncia ligera con <b>tono neutro</b> (bu).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: Tono en 對不起</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Fluidez y tono neutro central</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 5 -->
+                <div id="mission-5" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 5 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Cierre e Integración Final</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Combina el agradecimiento final con la despedida formal o cotidiana.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 再見 (Integración general)</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">謝謝大家，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[再見 / 晚安]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Xiè xie dàjiā, [zài jiàn / wǎn ān]!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">王老師，<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[再見 / 你好]</span>！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Wáng lǎoshī, [zài jiàn / nǐ hǎo]!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Pronunciación de 再見', '<b>再見 (Zài jiàn):</b> Ambos caracteres llevan 4º tono descendente fuerte y decidido (Zài jiàn).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 再見 (Zài jiàn)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Doble cuarto tono descendente</span>
+                            </button>
+                            <button onclick="showCorrection('Significado de 再見', '<b>Literalmente:</b> 再 (de nuevo) + 見 (ver) = Volver a verse. Es el despido estándar en mandarín.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Etimología: 再見</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Construcción del carácter</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Control de Navegación Inferior -->
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="prevMission()" id="btnPrev" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-xs transition border border-slate-700 opacity-50 cursor-not-allowed" disabled>
+                        ← Misión Anterior
+                    </button>
+                    <span id="missionIndicator" class="text-xs text-slate-400 font-medium">Misión 1 / 5</span>
+                    <button onclick="nextMission()" id="btnNext" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-xs transition shadow-md">
+                        Siguiente Misión →
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Flotante de Corrección en Tiempo Real -->
+    <div id="correctionModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="bg-amber-500/10 text-amber-400 p-2.5 rounded-xl border border-amber-500/20 text-lg">
+                    💡
+                </div>
+                <h4 id="correctionTitle" class="font-bold text-white text-base">Nota de Corrección</h4>
+            </div>
+            <p id="correctionText" class="text-slate-300 text-xs leading-relaxed mb-6">
+                <!-- Texto explicativo -->
+            </p>
+            <button onclick="closeCorrection()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl transition text-xs">
+                Entendido / Ocultar Nota
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentMission = 1;
+        const totalMissions = 5;
+
+        function setMission(num) {
+            currentMission = num;
+            
+            // Ocultar todas las misiones
+            document.querySelectorAll('.mission-content').forEach(el => el.classList.add('hidden'));
+            // Mostrar la seleccionada
+            document.getElementById(`mission-${num}`).classList.remove('hidden');
+
+            // Actualizar Pestañas
+            document.querySelectorAll('.mission-tab').forEach((tab, index) => {
+                if (index + 1 === num) {
+                    tab.className = "mission-tab bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition shadow-md";
+                } else {
+                    tab.className = "mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700";
+                }
+            });
+
+            // Actualizar indicador y botones
+            document.getElementById('missionIndicator').innerText = `Misión ${num} / ${totalMissions}`;
+            
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            if (num === 1) {
+                btnPrev.disabled = true;
+                btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnPrev.disabled = false;
+                btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            if (num === totalMissions) {
+                btnNext.innerText = "¡Taller Completado! 🎉";
+                btnNext.classList.replace('bg-amber-500', 'bg-emerald-500');
+                btnNext.classList.replace('hover:bg-amber-400', 'hover:bg-emerald-400');
+            } else {
+                btnNext.innerText = "Siguiente Misión →";
+                btnNext.classList.replace('bg-emerald-500', 'bg-amber-500');
+                btnNext.classList.replace('hover:bg-emerald-400', 'hover:bg-amber-400');
+            }
+        }
+
+        function nextMission() {
+            if (currentMission < totalMissions) {
+                setMission(currentMission + 1);
+            }
+        }
+
+        function prevMission() {
+            if (currentMission > 1) {
+                setMission(currentMission - 1);
+            }
+        }
+
+        function togglePinyin() {
+            const elements = document.querySelectorAll('.pinyin-text');
+            const btn = document.getElementById('btnPinyin');
+            elements.forEach(el => {
+                el.classList.toggle('hidden');
+            });
+            if (btn.innerText.includes('Ocultar')) {
+                btn.innerText = "Mostrar Pinyin";
+                btn.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+            } else {
+                btn.innerText = "Ocultar Pinyin (Modo Desafío)";
+                btn.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+            }
+        }
+
+        function showCorrection(title, text) {
+            document.getElementById('correctionTitle').innerText = title;
+            document.getElementById('correctionText').innerHTML = text;
+            document.getElementById('correctionModal').classList.remove('hidden');
+        }
+
+        function closeCorrection() {
+            document.getElementById('correctionModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+body {
+	font-family: 'Inter', 'Noto Sans TC', sans-serif;
+	background-color: #0F172A;
+	color: #1E293B;
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.dashboard-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 2.5rem 1.5rem;
+}
+
+.lesson-card {
+	background: #FFFFFF;
+	border-radius: 16px;
+	border: 1px solid #E2E8F0;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+	transition: all 0.25s ease;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
+}
+
+.lesson-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+	border-color: #CBD5E1;
+}
+
+.tag-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.2rem 0.65rem;
+	border-radius: 9999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.bg-pattern-card {
+	background-image: radial-gradient(circle at 100% 0%, rgba(0, 137, 123, 0.08) 0%, transparent 50%),
+					  radial-gradient(circle at 0% 100%, rgba(217, 119, 6, 0.05) 0%, transparent 50%);
+}
+
+.glow-hover {
+	transition: all 0.2s ease;
+}
+
+.glow-hover:hover {
+	filter: brightness(1.08);
+	transform: scale(1.02);
+}
