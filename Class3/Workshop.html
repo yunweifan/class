@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clase 2: Taller de Práctica Activa - Lección 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 md:p-6">
+
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Header del Taller -->
+        <header class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col md:flex-row justify-between items-center shadow-lg gap-4">
+            <div>
+                <span class="bg-amber-500/10 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full border border-amber-500/20">Clase 2 · Gimnasio Lingüístico</span>
+                <h1 class="text-2xl font-bold mt-2 text-white">Lección 3: Días de la semana y Verbos Cotidianos</h1>
+                <p class="text-slate-400 text-sm mt-1">5 Misiones paso a paso para dominar planes semanales, verbos de acción y hábitos.</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="togglePinyin()" id="btnPinyin" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-4 py-2 rounded-xl text-xs font-medium transition border border-slate-600">
+                    Ocultar Pinyin (Modo Desafío)
+                </button>
+            </div>
+        </header>
+
+        <!-- Navegación de Misiones (Pestañas Paso a Paso) -->
+        <nav class="flex overflow-x-auto gap-2 pb-2 border-b border-slate-800">
+            <button onclick="setMission(1)" id="tab-1" class="mission-tab bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition">
+                Misión 1: Días de la Semana
+            </button>
+            <button onclick="setMission(2)" id="tab-2" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 2: Regla del Tiempo
+            </button>
+            <button onclick="setMission(3)" id="tab-3" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 3: Deseos y Gustos
+            </button>
+            <button onclick="setMission(4)" id="tab-4" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 4: Rutinas y Destinos
+            </button>
+            <button onclick="setMission(5)" id="tab-5" class="mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700">
+                Misión 5: Invitaciones
+            </button>
+        </nav>
+
+        <!-- Contenido Principal Grid (Alineado arriba) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+            
+            <!-- Columna Izquierda: Banco de Palabras Resumido -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-lg flex flex-col h-fit">
+                <h2 class="text-xs font-bold tracking-wider text-amber-400 uppercase mb-3 flex justify-between items-center">
+                    <span>Vocabulario Base</span>
+                    <span class="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded text-[10px]">15 Términos</span>
+                </h2>
+                <div class="grid grid-cols-2 gap-2 text-xs overflow-y-auto max-h-[480px] pr-1">
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">星期一 ~ 六</span> <span class="pinyin-text text-[11px] text-slate-400">xīng qī yī ~ liù</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">星期日/天</span> <span class="pinyin-text text-[11px] text-slate-400">xīng qī rì/tiān</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">要 / 不要</span> <span class="pinyin-text text-[11px] text-slate-400">yào / bú yào</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">喜歡</span> <span class="pinyin-text text-[11px] text-slate-400">xǐ huan</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">去</span> <span class="pinyin-text text-[11px] text-slate-400">qù</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">回</span> <span class="pinyin-text text-[11px] text-slate-400">huí</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">吃</span> <span class="pinyin-text text-[11px] text-slate-400">chī</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">喝</span> <span class="pinyin-text text-[11px] text-slate-400">hē</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">睡覺</span> <span class="pinyin-text text-[11px] text-slate-400">shuì jiào</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">家</span> <span class="pinyin-text text-[11px] text-slate-400">jiā</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">工作</span> <span class="pinyin-text text-[11px] text-slate-400">gōng zuò</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">商店</span> <span class="pinyin-text text-[11px] text-slate-400">shāng diàn</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">飯</span> <span class="pinyin-text text-[11px] text-slate-400">fàn</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">水</span> <span class="pinyin-text text-[11px] text-slate-400">shuǐ</span></div>
+                    <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-700/50"><span class="font-bold text-white block">哪裡</span> <span class="pinyin-text text-[11px] text-slate-400">nǎ lǐ</span></div>
+                </div>
+            </div>
+
+            <!-- Columna Central/Derecha: Área de Misiones -->
+            <div class="lg:col-span-2 flex flex-col gap-6">
+                
+                <!-- MISIÓN 1 -->
+                <div id="mission-1" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 1 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Construcción de Días de la Semana</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Aplica la fórmula 星期 + Número e identifica la excepción del domingo.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 星期一~六, 星期日/天</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">今天不是星期六，今天是<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[星期日 / 星期七]</span>。</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Jīntiān bú shì xīngqīliù, jīntiān shì [xīngqīrì / xīngqīqī].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Excepción del Domingo', '<b>星期日 / 星期天:</b> ¡Nunca se dice 星期七 (xīngqīqī)! El domingo siempre se forma con 日 (rì) o 天 (tiān).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Regla Especial: Domingo</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">No usar el número 7</span>
+                            </button>
+                            <button onclick="showCorrection('Pronunciación de 星期', '<b>星期 (xīng qī):</b> Ambos caracteres son de 1er tono plano e igual de altos (xīng qī).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 星期 (xīng qī)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Mantenimiento del 1er tono</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 2 -->
+                <div id="mission-2" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 2 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">La Regla de Oro del Tiempo</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Posiciona la expresión temporal ANTES de la acción principal.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Sintaxis: [Sujeto] + [Tiempo] + [Verbo]</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">我<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[星期一]</span>去工作。</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Wǒ [xīngqīyī] qù gōngzuò.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Orden del Tiempo', '<b>Regla de Oro:</b> En chino la expresión temporal SIEMPRE precede a la acción. Es incorrecto colocar el día al final de la oración.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Gramática: Posición del Tiempo</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Sujeto + Tiempo + Verbo</span>
+                            </button>
+                            <button onclick="showCorrection('Verbo 去 (qù)', '<b>去 (qù):</b> Pronunciación con vocal <i>ü</i> redondeando los labios con 4º tono descendente fuerte.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: Verbo 去 (qù)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Articulación limpia de la u con diéresis</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 3 -->
+                <div id="mission-3" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 3 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Expresar Deseos y Gustos</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Usa 要, 不要 y 喜歡 para indicar tus preferencias de consumo o actividad.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 要, 不要, 喜歡, 吃, 喝</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">你<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[要 / 不要]</span>喝水？ — 我<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[喜歡 / 去]</span>喝水！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Nǐ [yào / bú yào] hē shuǐ? — Wǒ [xǐhuan / qù] hē shuǐ!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Cambio de Tono en 不要', '<b>不要 (bú yào):</b> La partícula 不 (bù) cambia a 2º tono (bú) al unirse con 要 (yào) que es de 4º tono.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: Tono de 不要</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Cambio de Bù a Bú</span>
+                            </button>
+                            <button onclick="showCorrection('Tono Neutro en 喜歡', '<b>喜歡 (xǐ huan):</b> La segunda sílaba 歡 pierde su tono original y se pronuncia suave como tono neutro.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 喜歡 (xǐ huan)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Tono neutro en huan</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 4 -->
+                <div id="mission-4" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 4 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Combinaciones Verbo + Sustantivo</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Expresa acciones completas como regresar a casa, ir a la tienda o descansar.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 回家, 去商店, 睡覺</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">我星期六<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[回家 / 吃飯]</span> <span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[睡覺 / 喝水]</span>。</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Wǒ xīngqīliù [huí jiā] [shuì jiào].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Uso del verbo 回 (huí)', '<b>回家 (huí jiā):</b> Para expresar regresar al hogar se usa exclusivamente 回 (huí), no se combina 去 con 家.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Gramática: Verbo 回 (Regresar)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Uso con el destino 家</span>
+                            </button>
+                            <button onclick="showCorrection('Pronunciación de 睡覺', '<b>睡覺 (shuì jiào):</b> Ambos caracteres son de 4º tono descendente decidido (shuì jiào).')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">🔊 Fonética: 睡覺 (shuì jiào)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Doble cuarto tono</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MISIÓN 5 -->
+                <div id="mission-5" class="mission-content bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-lg space-y-6 hidden">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-4">
+                        <div>
+                            <span class="text-amber-400 text-xs font-bold uppercase tracking-wider">Misión 5 de 5</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Planes e Invitaciones de Fin de Semana</h3>
+                            <p class="text-xs text-slate-400 mt-0.5">Pregunta destinos con 哪裡 (nǎlǐ) e invita a actividades sociales.</p>
+                        </div>
+                        <span class="text-xs text-slate-300 bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-700">Palabras: 哪裡, 星期五你要去吃飯嗎</span>
+                    </div>
+
+                    <div class="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-blue-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">A</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">你星期六去<span class="text-amber-300 font-bold bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">[哪裡 / 商店]</span>？</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Nǐ xīngqīliù qù [nǎ lǐ]?</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-emerald-600 text-white font-bold w-7 h-7 rounded-full flex items-center justify-center text-xs shrink-0 mt-1">B</div>
+                            <div class="bg-slate-800 p-3.5 rounded-2xl border border-slate-700 text-sm flex-1">
+                                <p class="text-white font-medium">星期五你要去吃飯嗎？ — 要！我喜歡吃飯！</p>
+                                <p class="pinyin-text text-xs text-slate-400 mt-1">Xīngqīwǔ nǐ yào qù chī fàn ma? — Yào! Wǒ xǐhuan chī fàn!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <p class="text-xs text-slate-400 font-semibold mb-2.5 uppercase tracking-wide">Pizarra de Retroalimentación en Vivo (Haz clic si hay un error):</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="showCorrection('Interrogativo 哪裡', '<b>哪裡 (nǎ lǐ):</b> Significa \'\¿Dónde?\'. En la pregunta se coloca exactamente en el lugar donde iría la respuesta de destino.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Pregunta de Lugar: 哪裡 (nǎ lǐ)</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Sustituto de ubicación</span>
+                            </button>
+                            <button onclick="showCorrection('Respuesta a Invitación', '<b>要 (yào):</b> Para aceptar una invitación abreviada basta con responder simplemente <i>要！(yào)</i>.')" class="bg-slate-900 hover:bg-slate-700 text-left p-3 rounded-xl border border-slate-700 transition group">
+                                <span class="font-bold text-amber-400 text-xs block group-hover:text-amber-300">📌 Expresión: Aceptar una propuesta</span>
+                                <span class="text-slate-400 text-[11px] mt-0.5 block">Uso directo del verbo</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Control de Navegación Inferior -->
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="prevMission()" id="btnPrev" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-5 py-2.5 rounded-xl text-xs transition border border-slate-700 opacity-50 cursor-not-allowed" disabled>
+                        ← Misión Anterior
+                    </button>
+                    <span id="missionIndicator" class="text-xs text-slate-400 font-medium">Misión 1 / 5</span>
+                    <button onclick="nextMission()" id="btnNext" class="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-xs transition shadow-md">
+                        Siguiente Misión →
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Flotante de Corrección en Tiempo Real -->
+    <div id="correctionModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="bg-amber-500/10 text-amber-400 p-2.5 rounded-xl border border-amber-500/20 text-lg">
+                    💡
+                </div>
+                <h4 id="correctionTitle" class="font-bold text-white text-base">Nota de Corrección</h4>
+            </div>
+            <p id="correctionText" class="text-slate-300 text-xs leading-relaxed mb-6">
+                <!-- Texto explicativo -->
+            </p>
+            <button onclick="closeCorrection()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold py-2.5 rounded-xl transition text-xs">
+                Entendido / Ocultar Nota
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentMission = 1;
+        const totalMissions = 5;
+
+        function setMission(num) {
+            currentMission = num;
+            
+            document.querySelectorAll('.mission-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`mission-${num}`).classList.remove('hidden');
+
+            document.querySelectorAll('.mission-tab').forEach((tab, index) => {
+                if (index + 1 === num) {
+                    tab.className = "mission-tab bg-amber-500 text-slate-900 font-bold px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition shadow-md";
+                } else {
+                    tab.className = "mission-tab bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-4 py-2.5 rounded-xl text-xs whitespace-nowrap transition border border-slate-700";
+                }
+            });
+
+            document.getElementById('missionIndicator').innerText = `Misión ${num} / ${totalMissions}`;
+            
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+
+            if (num === 1) {
+                btnPrev.disabled = true;
+                btnPrev.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                btnPrev.disabled = false;
+                btnPrev.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+
+            if (num === totalMissions) {
+                btnNext.innerText = "¡Taller Completado! 🎉";
+                btnNext.classList.replace('bg-amber-500', 'bg-emerald-500');
+                btnNext.classList.replace('hover:bg-amber-400', 'hover:bg-emerald-400');
+            } else {
+                btnNext.innerText = "Siguiente Misión →";
+                btnNext.classList.replace('bg-emerald-500', 'bg-amber-500');
+                btnNext.classList.replace('hover:bg-emerald-400', 'hover:bg-amber-400');
+            }
+        }
+
+        function nextMission() {
+            if (currentMission < totalMissions) {
+                setMission(currentMission + 1);
+            }
+        }
+
+        function prevMission() {
+            if (currentMission > 1) {
+                setMission(currentMission - 1);
+            }
+        }
+
+        function togglePinyin() {
+            const elements = document.querySelectorAll('.pinyin-text');
+            const btn = document.getElementById('btnPinyin');
+            elements.forEach(el => {
+                el.classList.toggle('hidden');
+            });
+            if (btn.innerText.includes('Ocultar')) {
+                btn.innerText = "Mostrar Pinyin";
+                btn.classList.add('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+            } else {
+                btn.innerText = "Ocultar Pinyin (Modo Desafío)";
+                btn.classList.remove('bg-amber-500/20', 'text-amber-400', 'border-amber-500/40');
+            }
+        }
+
+        function showCorrection(title, text) {
+            document.getElementById('correctionTitle').innerText = title;
+            document.getElementById('correctionText').innerHTML = text;
+            document.getElementById('correctionModal').classList.remove('hidden');
+        }
+
+        function closeCorrection() {
+            document.getElementById('correctionModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
